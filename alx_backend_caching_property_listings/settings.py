@@ -1,5 +1,9 @@
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -73,15 +77,11 @@ POSTGRES_PORT = int(os.getenv("POSTGRES_PORT", "5432"))
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": POSTGRES_DB,
-        "USER": POSTGRES_USER,
-        "PASSWORD": POSTGRES_PASSWORD,
-        "HOST": POSTGRES_HOST,
-        "PORT": POSTGRES_PORT,
-        "CONN_MAX_AGE": 60,  # persistent connections
-        "OPTIONS": {
-            "connect_timeout": 5,
-        },
+        "NAME": os.getenv("POSTGRES_DB", "propertydb"),
+        "USER": os.getenv("POSTGRES_USER", "propertyuser"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "propertypass"),
+        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
+        "PORT": os.getenv("POSTGRES_PORT", "5432"),
     }
 }
 

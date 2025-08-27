@@ -6,7 +6,12 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'alx_backend_caching_property_listings.settings')
+    import alias_loader  
+
+    os.environ.setdefault(
+        'DJANGO_SETTINGS_MODULE',
+        'alx_backend_caching_property_listings.settings'
+    )
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

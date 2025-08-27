@@ -7,5 +7,13 @@ class Property(models.Model):
     location = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=["created_at"]),
+            models.Index(fields=["location"]),
+            models.Index(fields=["price"]),
+        ]
+
     def __str__(self):
-        return self.title
+        return f"{self.title} — {self.location} (${self.price})"

@@ -17,7 +17,6 @@ staticfiles/
 .env.*.local
 
 # Docker
-docker-compose.override.yml
 .dockerignore
 
 # IDE
